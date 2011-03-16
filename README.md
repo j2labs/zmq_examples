@@ -6,7 +6,7 @@ ZeroMQ setups usually have a few moving parts and it would be a shame for someon
 
 # The projects
 
-I recommend the following order for testing the setup, as each step increases the complexity of ZeroMQ's use. 
+I recommend trying the examples in the same order I describe them. Each example grows in complexity.
 
 ## Wayne's World
 
@@ -57,7 +57,7 @@ Disconnect your client and you will see the server block again. Turn on two clie
 
 Eventloop leverages some of the work that has been done to put ZeroMQ in Tornado's IOLoop. The work ,`ZMQStream.py`, appears to have been done by Facebook, the same people that open sourced Tornado in the first place. Sweet.
 
-This example builds an echo server by connecting a callback to a ZMQStream, which is running inside the IOLoop. The client does not use the IOLoop.
+This example builds an echo server by connecting a callback to a ZMQStream, which is running inside the IOLoop. The client does not use the IOLoop. Experienced Tornado hackers will recognize the use of IOStream to hook the socket in.
 
 # What next?
 
