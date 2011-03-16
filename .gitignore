@@ -1,0 +1,10 @@
+.DS_Store
+dev.db
+*.pyc
+*.bak
+*.log
+*.*~
+MANIFEST
+build
+dist
+
