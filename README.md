@@ -51,6 +51,9 @@ We see that server has sent only one message. A PUSH socket will block until the
 
 One we turn on a client, `client.py`, we see the client immediately handle a message. The server then sends a message once a second to the client.
 
+    $ ./client.py 
+    200 :: hello world
+
 Disconnect your client and you will see the server block again. Turn on two clients and watch each client take turns receiving a message.
 
 ## Eventloop
