@@ -8,6 +8,6 @@ s = ctx.socket(zmq.PUB)
 s.bind("ipc://hellostream:5678")
 
 while True:
-    s.send('helos' + " " + 'Hello!')
+    s.send('hellos' + " " + 'Hello!')
     print 'Sending a hello'
     time.sleep(1)
