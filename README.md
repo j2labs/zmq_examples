@@ -38,24 +38,6 @@ Same thing for camera2:
 
 What do you think happens if we turn on `camera1.py` twice instead? You should try it! 
     
-## Passing JSON
-
-This example demonstrates how a pool of workers might be constructed. The PUSH/PULL pattern let's us connect as many clients to the message socket as we need and ZeroMQ will handle the load-balancing for us. It sends message round-robin to each of the connected handlers.
-
-Let's turn the server on.
-
-    $ ./server.py 
-    Hello world?
-
-We see that server has sent only one message. A PUSH socket will block until there is at least one client connected.
-
-One we turn on a client, `client.py`, we see the client immediately handle a message. The server then sends a message once a second to the client.
-
-    $ ./client.py 
-    200 :: hello world
-
-Disconnect your client and you will see the server block again. Turn on two clients and watch each client take turns receiving a message.
-
 ## Wayne's World 2
 
 This example uses a single TCP PUB socket, but uses `camera_1` and `camera_2` as the subscription topic. 
@@ -87,7 +69,27 @@ Here is what happens when we call `recv()` on a message that was sent as a multi
     camera2
     Party on, Garth.
 
-Each item is caught separately from a call to `recv()`. It would be more correct to call `recv_multipart`, but that's left as an exercise for you.
+Each item is caught separately from a call to `recv()`. It would be more correct to call `recv_multipart`. You should try it!
+
+The reason the topic is still provided to the reader, even though we've subscribed, is to let a read subscribe to multiple topics.
+
+## Passing JSON
+
+This example demonstrates how a pool of workers might be constructed. The PUSH/PULL pattern let's us connect as many clients to the message socket as we need and ZeroMQ will handle the load-balancing for us. It sends message round-robin to each of the connected handlers.
+
+Let's turn the server on.
+
+    $ ./server.py 
+    Hello world?
+
+We see that server has sent only one message. A PUSH socket will block until there is at least one client connected.
+
+One we turn on a client, `client.py`, we see the client immediately handle a message. The server then sends a message once a second to the client.
+
+    $ ./client.py 
+    200 :: hello world
+
+Disconnect your client and you will see the server block again. Turn on two clients and watch each client take turns receiving a message.
 
 ## Eventloop
 
