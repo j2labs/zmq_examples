@@ -103,5 +103,5 @@ ZeroMQ is a big project. I recommend reading the [ZeroMQ guide](http://zguide.ze
 
 You might also dig two other projects I have:
 
-* [Brubeck](https://github.com/j2labs/brubeck) is an asynchronous message handler optimized for handling [Mongrel2](http://mongrel2.org) messages. It is almost a complete web framework.
+* [Brubeck](https://github.com/j2labs/brubeck) is an asynchronous message handler optimized for handling [Mongrel2](http://mongrel2.org) messages.
 * [Dillinger](https://github.com/j2labs/dillinger) is an rough sketch of how one could use Tornado's asynchronous features to wait on ZeroMQ sockets, similar to how it can wait on HTTP requests before responding to a user.
