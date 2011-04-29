@@ -82,9 +82,9 @@ As we saw before, you can simply call `recv()` and get a single line. `camera1.p
 
     camera_1 Party on, Wayne.
 
-Here is what happens when we call `recv()` on a message that was sent as a multipart message.
+Here is what happens when we call `recv()` on a message that was sent as a multipart message, as `camera2.py` does.
 
-    camera1
+    camera2
     Party on, Wayne.
 
 Each item is caught separately from a call to `recv()`. It would be more correct to call `recv_multipart`, but that's left as an exercise for you.
