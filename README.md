@@ -56,6 +56,39 @@ One we turn on a client, `client.py`, we see the client immediately handle a mes
 
 Disconnect your client and you will see the server block again. Turn on two clients and watch each client take turns receiving a message.
 
+## Wayne's World 2
+
+This example uses a single TCP PUB socket, but uses `camera_1` and `camera_2` as the subscription topic. 
+
+The server sends to `camera_1`, sleeps for a second, sends to `camera_2`, sleeps for a second and then sends a message to `nowhere`. There is no code to handle `nowhere`, so this message just disappears.
+
+The code to send to `camera_1` looks like this:
+
+    s.send("%s Party on, Wayne." % topic_1)
+
+The topic is the first string in the message. This gets interpretted as the topic, so `camera1.py` will pick it up. But you can see how this would be tricky...
+
+The code to send to `camera_2` looks like this:
+
+    s.send_multipart([topic_2, "Party on, Garth."])
+
+The topic is now separate from the message. The receiver can receive this multipart message as a single message, but it will get it each part separately. This is what `camera1.py` does. 
+
+Configuring a subscriber to listen to topics is easy. You call `setsockopt(zmq.SUBSCRIBE, <topic>)` on the socket. That's only part of it though.
+
+A client will receive the topic as part of the message, even though we know they're subscribed. This is because a client can subscribe to multiple topics. ZeroMQ itself will drop any messages that a client hasn't subscribed to and will then say, "here's a message from this `topic`". 
+
+As we saw before, you can simply call `recv()` and get a single line. `camera1.py` prints this, for example.
+
+    camera_1 Party on, Wayne.
+
+Here is what happens when we call `recv()` on a message that was sent as a multipart message.
+
+    camera1
+    Party on, Wayne.
+
+Each item is caught separately from a call to `recv()`. It would be more correct to call `recv_multipart`, but that's left as an exercise for you.
+
 ## Eventloop
 
 Eventloop leverages some of the work that has been done to put ZeroMQ in Tornado's IOLoop. The work ,`ZMQStream.py`, appears to have been done by Facebook, the same people that open sourced Tornado in the first place. Sweet.
