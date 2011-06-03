@@ -1,6 +1,6 @@
 # ZeroMQ examples with Python
 
-This project is just a repository for examples for of how to ZeroMQ with Python. These particular examples allow someone to get up and running to test their setup before moving on to coding. 
+This project is just a repository for examples for of how to use ZeroMQ with Python. These particular examples allow someone to get up and running to test their setup before moving on to coding. 
 
 ZeroMQ setups usually have a few moving parts and it would be a shame for someone to get discouraged by being unsure if they have the code right when it's a setup issue, and versa vice.
 
